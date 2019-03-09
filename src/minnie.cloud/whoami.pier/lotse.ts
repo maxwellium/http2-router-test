@@ -3,15 +3,15 @@ import { Context } from 'http2-router';
 
 import { http2Pier, http2PierSend } from '@b-c/http2-pier';
 
-import { jwtContext } from '../../shared';
+import { jwtFromHeader } from '../../shared';
 import * as ioSchema from './schema';
 import { whoami } from '.';
 
 
 
 async function handler( ctx: Context ) {
-  jwtContext( ctx );
-  return await whoami( ctx );
+  const jwt = jwtFromHeader( ctx );
+  return await whoami( { ...ctx, jwt } );
 }
 
 export const pier = http2Pier( handler, http2PierSend.json );

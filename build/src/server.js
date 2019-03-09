@@ -9,7 +9,7 @@ function runServer(routes, port = 8000) {
         cert: fs_1.readFileSync(path_1.join(__dirname, '..', '..', 'cert', 'localhost-cert.pem'))
     });
     server.on('request', (req, res) => routes.route({ req, res }));
-    server.on('error', (err) => console.error(err));
+    server.on('error', err => console.error(err));
     server.listen(port);
     console.log('listening on', port);
 }

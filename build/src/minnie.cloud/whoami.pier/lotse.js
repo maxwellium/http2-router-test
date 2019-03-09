@@ -5,8 +5,8 @@ const shared_1 = require("../../shared");
 const ioSchema = require("./schema");
 const _1 = require(".");
 async function handler(ctx) {
-    shared_1.jwtContext(ctx);
-    return await _1.whoami(ctx);
+    const jwt = shared_1.jwtFromHeader(ctx);
+    return await _1.whoami(Object.assign({}, ctx, { jwt }));
 }
 exports.pier = http2_pier_1.http2Pier(handler, http2_pier_1.http2PierSend.json);
 exports.pier.i = null;

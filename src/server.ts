@@ -13,7 +13,7 @@ export function runServer( routes: Routes, port = 8000 ) {
   } );
 
   server.on( 'request', ( req, res ) => routes.route( { req, res } ) );
-  server.on( 'error', ( err ) => console.error( err ) );
+  server.on( 'error', err => console.error( err ) );
 
   server.listen( port );
 
